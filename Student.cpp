@@ -29,7 +29,7 @@ void Student::readStudent() {
         field = strtok(c_line,";");
 
         //cout << field << endl;
-        //TESTEjksdfnbojsd
+        //TESTEjksdfnbojsd faz o kenny G
         while(field != NULL){
             cout << field << " ";
             field = strtok(NULL,";");
