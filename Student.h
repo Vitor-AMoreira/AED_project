@@ -1,25 +1,31 @@
 
 #ifndef PROJECT_STUDENT_H
 #define PROJECT_STUDENT_H
-#endif //PROJECT_STUDENT_H
 
-Class Student {
+#include <string>
+#include <vector>
+
+using namespace std;
+
+class Student {
 
 private:
-    string studentCode;
+    long int studentCode;
     string studentName;
-    vector<string> ucCode;
-    vector<string> classCode;
+    string ucCode;
+    string  classCode;
 
 public:
-    Student(string studentCode, string studentName, string ucCode, string classCode);
+    Student(long int studentCode, string studentName, string ucCode, string classCode);
 
-    getUcCode();
-    getClassCode();
-    getStudentName();
+    string getUcCode();
+    string getClassCode();
+    string getStudentName();
 
-    setUcCode();
-    setClassCode();
-    setStudentName();
-}
+    void readStudent();
+    void setUcCode();
+    void setClassCode();
+    void setStudentName();
+};
 
+#endif //PROJECT_STUDENT_H
