@@ -6,30 +6,34 @@
 
 ReadStudent::ReadStudent(){}
 
-vector<Student> ReadStudent::read(string file_name){
-    vector<Student> all_students;
+void ReadStudent::read(string file_name) {
+
+    StudentsTree tree;
 
     ifstream file(file_name);
-    string line; string field; string delimiter = ";";
+    string line;
+    string field;
+    string delimiter = ";";
     int count = 0;
 
-    while(getline(file,line)){
-        if(count++ == 0) continue;
+    while (getline(file, line)) {
+        if (count++ == 0) continue;
 
         vector<string> array_of_fields;
         int pos = 0;
 
-        while ((pos = line.find(delimiter)) != string::npos){
+        while ((pos = line.find(delimiter)) != string::npos) {
             field = line.substr(0, pos);
             array_of_fields.push_back(field);
             line.erase(0, pos + delimiter.length());
-            if(line.find(delimiter) == string::npos) array_of_fields.push_back(line.substr(0, pos));
+            if (line.find(delimiter) == string::npos) array_of_fields.push_back(line.substr(0, pos));
         }
-
-        //Ver na árvore binária se já existe esse Uc, caso não exista, criar o obj. Caso exista dar um push na UcAndClass
-        Student student = Student(array_of_fields[0],array_of_fields[1],array_of_fields[2],array_of_fields[3]);
-        //Ao inves de eu colar em all_students aqui, eu coloco na tree
-        all_students.push_back(student);
+        //Creating an obj for each interation
+        Student student(array_of_fields[0], array_of_fields[1], array_of_fields[2], array_of_fields[3]);
+        if (tree.head == nullptr) tree.head = tree.build(tree.head, student); //Case if the tree is empty
+        else if (tree.contains(tree.head, student)) {
+            continue; //If already contains student, go to next interation
+        } else tree.build(tree.head, student); //If students isnt present, add it
     }
-    return all_students;
+    tree.print(tree.head);
 }

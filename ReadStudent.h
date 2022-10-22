@@ -9,13 +9,14 @@
 #include <iostream>
 #include <vector>
 #include "Student.h"
+#include "StudentsTree.h"
 
 using namespace std;
 
 class ReadStudent {
     public :
         ReadStudent();
-        vector<Student> read(string file_name);
+        void read(string file_name);
 };
 
 

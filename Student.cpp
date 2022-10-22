@@ -4,6 +4,7 @@
 #include <cstring>
 #include "Student.h"
 
+
 using namespace std;
 
 Student::Student(string studentCode, string studentName, string ucCode, string classCode) {
@@ -26,16 +27,4 @@ bool Student::operator<(Student student){
 }
 bool Student::operator>(Student student){
     return this->studentCode > student.studentCode;
-}
-
-
-        //cout << field << endl;
-        //TESTEjksdfnbojsd faz o kenny G
-        while(field != NULL){
-            cout << field << " ";
-            field = strtok(NULL,";");
-        }
-        cout << endl;
-        if(line_number == 5) break; //TEST
-    }
 }

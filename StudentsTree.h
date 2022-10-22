@@ -5,18 +5,23 @@
 #ifndef AED_PROJECT_STUDENTSTREE_H
 #define AED_PROJECT_STUDENTSTREE_H
 #include "Student.h"
+#include <iostream>
+using namespace std;
 
 class StudentsTree {
     public :
-        struct students_tree{
-            students_tree *left;
-            students_tree *right;
-            Student student;
+        struct node{
+            node *left;
+            node *right;
+            Student &student;
         };
+        node *head;
 
         StudentsTree();
-        students_tree *build(students_tree *t, Student student);
-        bool contains(const students_tree *t, Student student);
+        node *build(node *t, Student &student);
+        bool contains(node *t, Student &student);
+        void print(const node *t);
+
 };
 
 

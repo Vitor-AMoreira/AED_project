@@ -5,7 +5,6 @@
 #include <string>
 #include <vector>
 #include "UcAndClass.h"
-#include "Class.h"
 
 using namespace std;
 
