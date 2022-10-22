@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include "UcAndClass.h"
+#include "Class.h"
 
 using namespace std;
 
@@ -14,12 +15,16 @@ private:
     string studentCode;
     string studentName;
     vector<UcAndClass> ucAndClasses;
-    //string ucCode;    //Tem várias UC's
-    //string classCode; //Tem várias turmas e eu acho que eu tenho que juntar esses dois
 
 public:
     Student(string studentCode, string studentName, string ucCode, string classCode);
     void print();
+
+    vector<UcAndClass> getUcAndClasses();
+    string getStudentCode();
+    string getStudentName();
+    string getUcCode();
+    string getClassCode();
 
     bool operator==(Student student);
     bool operator<(Student student);

@@ -29,23 +29,13 @@ bool Student::operator>(Student student){
 }
 
 
-/*
-Student::getStudentName() {
-    return studentName;
+        //cout << field << endl;
+        //TESTEjksdfnbojsd faz o kenny G
+        while(field != NULL){
+            cout << field << " ";
+            field = strtok(NULL,";");
+        }
+        cout << endl;
+        if(line_number == 5) break; //TEST
+    }
 }
-
-Student::getUcCode() {
-    return ucCode;
-}
-
-Student::setUcCode() {
-    this.ucCode = ucCode;
-}
-
-Student::getClassCode() {
-    return classCode;
-}
-
-Student::setClassCode() {
-    this.classCode = classCode;
-}*/
