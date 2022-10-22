@@ -2,11 +2,13 @@
 // Created by victo on 22/10/2022.
 //
 
-#include "ReadClassesPerUc.h"
+#include "ReadClasses.h"
+#include <string>
+#include <list>
 
-ReadClassesPerUc::ReadClassesPerUc() {}
+#include "Class.h"
 
-void ReadClassesPerUc::read(string file_name) {
+ReadClasses::ReadClasses(string file_name) {
 
     ifstream file(file_name);
     string line; string field; string delimiter = ";";
@@ -27,5 +29,16 @@ void ReadClassesPerUc::read(string file_name) {
         //Student student = Student(array_of_fields[0],array_of_fields[1],array_of_fields[2],array_of_fields[3]);
         //all_students.push_back(student);
     }
-    return;
+}
+
+vector<Class> ReadClasses::getAllClasses() {
+    return this->allClasses;
+}
+
+Class ReadClasses::findClass(string ucCode, string classCode) {
+    for(Class c: allClasses) {
+        if(c.getUcCode() == ucCode && c.getClassCode() == classCode) {
+            return c;
+        }
+    }
 }

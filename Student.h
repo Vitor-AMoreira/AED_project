@@ -4,7 +4,8 @@
 
 #include <string>
 #include <vector>
-#include "UcAndClass.h"
+#include "Class.h"
+#include "ReadClasses.h"
 
 using namespace std;
 
@@ -13,17 +14,15 @@ class Student {
 private:
     string studentCode;
     string studentName;
-    vector<UcAndClass> ucAndClasses;
+    list<Class> classes;
 
 public:
-    Student(string studentCode, string studentName, string ucCode, string classCode);
+    Student(string studentCode, string studentName, string ucCode, string classCode, ReadClasses allClasses);
     void print();
 
-    vector<UcAndClass> getUcAndClasses();
+    list<Class> getClasses();
     string getStudentCode();
     string getStudentName();
-    string getUcCode();
-    string getClassCode();
 
     bool operator==(Student student);
     bool operator<(Student student);
