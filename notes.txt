@@ -1,0 +1,12 @@
+classes_per_uc : Contem as turmas existentes em cada unidade curricular (então aqui tem que relacionar
+uma única unidade curricular com várias turmas.)
+
+classes : horário para todas as turmas das UCS
+
+aula : é identificada por uma UC, class, dia da semana, hora, duração, tipo.
+horário : conjuto de aulas
+estudante : código e nome, e tem um horário
+
+-Uma UC tem turmas únicas, assim, vendo que o Student tem essa UC, e está em tal turma, já associa com o hórario
+-Turmas e UC's estão totalmente relacionados, não tem como fazer nada com um sozinho... Se pá conpensa até em
+criar um obj para cada

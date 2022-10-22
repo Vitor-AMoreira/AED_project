@@ -4,28 +4,26 @@
 
 #include <string>
 #include <vector>
+#include "UcAndClass.h"
 
 using namespace std;
 
 class Student {
 
 private:
-    long int studentCode;
+    string studentCode;
     string studentName;
-    string ucCode;
-    string  classCode;
+    vector<UcAndClass> ucAndClasses;
+    //string ucCode;    //Tem várias UC's
+    //string classCode; //Tem várias turmas e eu acho que eu tenho que juntar esses dois
 
 public:
-    Student(long int studentCode, string studentName, string ucCode, string classCode);
+    Student(string studentCode, string studentName, string ucCode, string classCode);
+    void print();
 
-    string getUcCode();
-    string getClassCode();
-    string getStudentName();
-
-    void readStudent();
-    void setUcCode();
-    void setClassCode();
-    void setStudentName();
+    bool operator==(Student student);
+    bool operator<(Student student);
+    bool operator>(Student student);
 };
 
 #endif //PROJECT_STUDENT_H
