@@ -17,7 +17,7 @@ class ReadClasses {
 private:
     vector<Class> allClasses;
 public :
-    ReadClasses(string file_name);
+    ReadClasses();
 
     vector<Class> getAllClasses();
     Class findClass(string ucCode, string classCode);

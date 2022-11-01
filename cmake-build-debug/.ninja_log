@@ -1,9 +1,12 @@
 # ninja log v5
-22	2387	6887464395728128	CMakeFiles/Project.dir/main.cpp.obj	a81d5c62b730974e
-260	2436	6887464396238131	CMakeFiles/Project.dir/StudentsTree.cpp.obj	c4b290f149137a84
-306	394	6879030997859852	Project.exe	75a0f4bd88310a46
-62	2539	6887464397229761	CMakeFiles/Project.dir/ReadClasses.cpp.obj	e378d4c8e26f8ce9
-32	1039	6887462788188213	CMakeFiles/Project.dir/Class.cpp.obj	d0d71f9d3cd71d97
-26	1103	6887463904082336	CMakeFiles/Project.dir/Student.cpp.obj	a57e23defec9aa04
-7	1091	6887465599629327	CMakeFiles/Project.dir/main.cpp.obj	a81d5c62b730974e
-1092	1540	6887465604126653	Project.exe	2b1c3690bf37151f
+3	569	6890257577019132	CMakeFiles/Project.dir/main.cpp.obj	c27771cce9a26cd2
+20	375	6890217187427122	CMakeFiles/Project.dir/StudentsTree.cpp.obj	4df22513357da917
+506	633	6890245977386493	Project.exe	2b1c3690bf37151f
+12	292	6890217186595487	CMakeFiles/Project.dir/Class.cpp.obj	b86658aca88bc343
+17	385	6890217187527200	CMakeFiles/Project.dir/Student.cpp.obj	cebe531126ec12e
+2	489	6890258231091731	CMakeFiles/Project.dir/ReadClasses.cpp.obj	ed6a411d5f4bd6dd
+489	628	6890258232441809	Project.exe	bb1557b6ca25eae7
+3	471	6890258470903739	CMakeFiles/Project.dir/main.cpp.obj	c27771cce9a26cd2
+472	600	6890258472139508	Project.exe	bb1557b6ca25eae7
+3	457	6890263488440240	CMakeFiles/Project.dir/main.cpp.obj	c27771cce9a26cd2
+458	590	6890263489724731	Project.exe	bb1557b6ca25eae7

@@ -7,6 +7,8 @@
 #include "ReadStudent.h"
 #include "ReadClasses.h"
 
+using namespace std;
+
 int main() {
 
     //MENU
@@ -25,8 +27,8 @@ int main() {
     // para saber quantos alunos cada class possui
 
     //Class(string ucCode, string classCode, string weekday, float startHour, float duration, string type);
-    Class c1("1", "10", "monday", 8.0, 2.0, "T");
-    Student("1", "Victor", c1);
+
+    ReadClasses readClasses;
 
     return 0;
 }

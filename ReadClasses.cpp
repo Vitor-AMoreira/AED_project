@@ -4,31 +4,33 @@
 
 #include "ReadClasses.h"
 #include <string>
-#include <list>
+#include <vector>
 
 #include "Class.h"
 
-ReadClasses::ReadClasses(string file_name) {
-
-    ifstream file(file_name);
-    string line; string field; string delimiter = ";";
+ReadClasses::ReadClasses() {
+    ifstream file("../schedule/classes.csv");
+    string line;
+    string field;
+    string delimiter = ";";
     int count = 0;
 
     while(getline(file,line)){
         if(count++ == 0) continue;
-
+        vector<string> array_of_fields;
         int pos = 0;
-
+        cout << line << endl;
         while ((pos = line.find(delimiter)) != string::npos){
             field = line.substr(0, pos);
-            cout << field << "#";
+            array_of_fields.push_back(field);
             line.erase(0, pos + delimiter.length());
-            if(line.find(delimiter) == string::npos) cout << line.substr(0,pos) << endl;
-                //array_of_fields.push_back(line.substr(0, pos));
+            //if(line.find(delimiter) == string::npos) cout << line.substr(0,pos) << endl;
         }
-        //Student student = Student(array_of_fields[0],array_of_fields[1],array_of_fields[2],array_of_fields[3]);
-        //all_students.push_back(student);
+
+        Class class_ = Class(array_of_fields[0],array_of_fields[1],array_of_fields[2],array_of_fields[3],array_of_fields[4],array_of_fields[5]);
+        allClasses.push_back(class_);
     }
+
 }
 
 vector<Class> ReadClasses::getAllClasses() {
