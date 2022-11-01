@@ -30,12 +30,14 @@ void ReadStudent::read(string file_name) {
         }
 
         //Class c = ReadClasses::findClass(array_of_fields[2], array_of_fields[3]);
+        //Criar um atributo e um método que coloquem o estudante nessa classe. Pode ser simplesmente colocar o Código
+        //de estudante
         //Student student(array_of_fields[0], array_of_fields[1], c);
+        StudentsTree::node *temp;
 
         if (tree.head == nullptr) tree.head = tree.build(tree.head, student); //Case if the tree is empty
-        else if (tree.contains(tree.head, student)) {
-            continue;
+        else if ((temp = tree.find(tree.head, student)) != nullptr) {
+            temp->student.pushClass(c);
         } else tree.build(tree.head, student); //If students isnt present, add it
     }
-    tree.print(tree.head);
 }

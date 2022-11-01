@@ -18,6 +18,23 @@ void Student::print(){
     cout << studentCode << "," << studentName;
 }
 
+void Student::pushClass(Class &studentClass) {
+    classes.push_back(studentClass);
+}
+/*
+void Student::removeClass(string ucCode) {
+    for(Class c : classes){
+        if(c.getUcCode() == ucCode){
+            classes.remove(c);
+        }
+    }
+}
+ */
+
+string Student::getStudentName() {
+    return this->studentName;
+}
+
 bool Student::operator==(Student student) {
     return this->studentCode == student.studentCode;
 }

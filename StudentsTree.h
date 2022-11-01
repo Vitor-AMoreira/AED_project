@@ -19,7 +19,8 @@ class StudentsTree {
 
         StudentsTree();
         node *build(node *t, Student &student);
-        bool contains(node *t, Student &student);
+        node *find(node *t, Student &student);
+        //  node *findByName(node *t, string name);
         void print(node *t);
 
 };
