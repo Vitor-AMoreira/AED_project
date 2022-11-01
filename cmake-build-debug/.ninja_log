@@ -1,3 +1,9 @@
 # ninja log v5
-2	305	6879030996910211	CMakeFiles/Project.dir/main.cpp.obj	c27771cce9a26cd2
+22	2387	6887464395728128	CMakeFiles/Project.dir/main.cpp.obj	a81d5c62b730974e
+260	2436	6887464396238131	CMakeFiles/Project.dir/StudentsTree.cpp.obj	c4b290f149137a84
 306	394	6879030997859852	Project.exe	75a0f4bd88310a46
+62	2539	6887464397229761	CMakeFiles/Project.dir/ReadClasses.cpp.obj	e378d4c8e26f8ce9
+32	1039	6887462788188213	CMakeFiles/Project.dir/Class.cpp.obj	d0d71f9d3cd71d97
+26	1103	6887463904082336	CMakeFiles/Project.dir/Student.cpp.obj	a57e23defec9aa04
+7	1091	6887465599629327	CMakeFiles/Project.dir/main.cpp.obj	a81d5c62b730974e
+1092	1540	6887465604126653	Project.exe	2b1c3690bf37151f

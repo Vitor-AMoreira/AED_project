@@ -1,31 +1,21 @@
-
-#include <fstream>
-#include <iostream>
-#include <cstring>
 #include "Student.h"
-#include "ReadClasses.h"
-#include "Class.h"
-
 
 using namespace std;
 
-Student::Student(string studentCode, string studentName, string ucCode, string classCode, ReadClasses allClasses) {
+Student::Student(string studentCode, string studentName,Class &studentClass) {
     this->studentCode = studentCode;
     this->studentName = studentName;
 
-    //To get the class object
-    Class class_ = allClasses.findClass(ucCode, classCode);
-
     //To insert in list classes
-    classes.push_back(class_);
+    classes.push_back(studentClass);
 
     //To add 1 student to the class StudentsNumber
-    class_.addStudentsNumber();
+    studentClass.addStudentsNumber();
 
 }
 
 void Student::print(){
-    cout << studentCode << "," << studentName << "," << classes[classes.begin()].getClass() << "," << classes[classes.begin()].getUc();
+    cout << studentCode << "," << studentName;
 }
 
 bool Student::operator==(Student student) {

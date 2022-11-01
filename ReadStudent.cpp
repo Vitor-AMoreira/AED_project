@@ -28,11 +28,13 @@ void ReadStudent::read(string file_name) {
             line.erase(0, pos + delimiter.length());
             if (line.find(delimiter) == string::npos) array_of_fields.push_back(line.substr(0, pos));
         }
-        //Creating an obj for each interation
-        Student student(array_of_fields[0], array_of_fields[1], array_of_fields[2], array_of_fields[3]);
+
+        //Class c = ReadClasses::findClass(array_of_fields[2], array_of_fields[3]);
+        //Student student(array_of_fields[0], array_of_fields[1], c);
+
         if (tree.head == nullptr) tree.head = tree.build(tree.head, student); //Case if the tree is empty
         else if (tree.contains(tree.head, student)) {
-            continue; //If already contains student, go to next interation
+            continue;
         } else tree.build(tree.head, student); //If students isnt present, add it
     }
     tree.print(tree.head);

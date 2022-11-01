@@ -24,8 +24,9 @@ int main() {
     //Depois executa a função setStudentsNumber(ReadStudents.getAllClasses()) de cada class
     // para saber quantos alunos cada class possui
 
-    Student s1("0", "Victor Careca", "AED", "001");
-    Student s2("1", "Victor Morais", "AED", "001");
+    //Class(string ucCode, string classCode, string weekday, float startHour, float duration, string type);
+    Class c1("1", "10", "monday", 8.0, 2.0, "T");
+    Student("1", "Victor", c1);
 
     return 0;
 }

@@ -13,14 +13,14 @@ class StudentsTree {
         struct node{
             node *left;
             node *right;
-            Student &student;
+            Student student;
         };
         node *head;
 
         StudentsTree();
         node *build(node *t, Student &student);
         bool contains(node *t, Student &student);
-        void print(const node *t);
+        void print(node *t);
 
 };
 

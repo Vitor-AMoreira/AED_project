@@ -1,7 +1,6 @@
 //
 // Created by victo on 22/10/2022.
 //
-
 #include "StudentsTree.h"
 
 StudentsTree::StudentsTree() { head = nullptr; }
@@ -21,7 +20,7 @@ bool StudentsTree::contains(StudentsTree::node *t, Student &student) {
         return false;
 }
 
-void StudentsTree::print(const node *t){
+void StudentsTree::print(node *t){
     if(!t) return;
     print(t->left);
     t->student.print();

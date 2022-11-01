@@ -5,7 +5,7 @@
 #ifndef AED_PROJECT_UCANDCLASS_H
 #define AED_PROJECT_UCANDCLASS_H
 #include <string>
-#include "Student.h"
+#include <vector>
 
 using namespace std;
 

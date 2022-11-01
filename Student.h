@@ -4,26 +4,28 @@
 
 #include <string>
 #include <vector>
+#include <list>
+#include <iostream>
 #include "Class.h"
-#include "ReadClasses.h"
 
 using namespace std;
 
 class Student {
 
 private:
+
     string studentCode;
     string studentName;
     list<Class> classes;
 
 public:
-    Student(string studentCode, string studentName, string ucCode, string classCode, ReadClasses allClasses);
+    Student(string studentCode, string studentName, Class &studentClass);
     void print();
-
+    /*
     list<Class> getClasses();
     string getStudentCode();
     string getStudentName();
-
+    */
     bool operator==(Student student);
     bool operator<(Student student);
     bool operator>(Student student);

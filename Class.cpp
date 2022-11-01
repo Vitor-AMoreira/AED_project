@@ -3,7 +3,6 @@
 //
 
 #include "Class.h"
-#include <vector>
 
 using namespace std;
 
