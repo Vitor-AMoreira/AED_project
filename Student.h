@@ -21,11 +21,16 @@ private:
 public:
     Student(string studentCode, string studentName, Class &studentClass);
     void print();
+
+    void pushClass(Class &studentClass);
+    void removeClass(string ucCode); //To remove a student from a Uc/class
+
     /*
     list<Class> getClasses();
     string getStudentCode();
-    string getStudentName();
     */
+    string getStudentName();
+
     bool operator==(Student student);
     bool operator<(Student student);
     bool operator>(Student student);

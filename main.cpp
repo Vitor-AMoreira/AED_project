@@ -7,8 +7,6 @@
 #include "ReadStudent.h"
 #include "ReadClasses.h"
 
-using namespace std;
-
 int main() {
 
     //MENU
@@ -27,8 +25,16 @@ int main() {
     // para saber quantos alunos cada class possui
 
     //Class(string ucCode, string classCode, string weekday, float startHour, float duration, string type);
+    Class c1("1", "10", "monday", 8.0, 2.0, "T");
+    Student s1("1", "Victor", c1);
+    Student s2("2", "Daniel", c1);
 
-    ReadClasses readClasses;
+    StudentsTree tree;
+
+    tree.head = tree.build(tree.head, s1);
+    StudentsTree::node *temp;
+    if((temp = tree.find(tree.head, s2)) != nullptr) cout << "Deu certo!" << endl;
+
 
     return 0;
 }

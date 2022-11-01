@@ -12,13 +12,23 @@ StudentsTree::node *StudentsTree::build(StudentsTree::node *t, Student &student)
     return t;
 }
 
-bool StudentsTree::contains(StudentsTree::node *t, Student &student) {
-        while(t != nullptr){
-            if(t->student == student) return true;
-            t = student < t->student ? t->left : t->right;
+StudentsTree::node *StudentsTree::find(StudentsTree::node *t, Student &student) {
+        StudentsTree::node *temp = t;
+        while(temp != nullptr){
+            if(t->student == student) return temp;
+            temp = student < temp->student ? temp->left : temp->right;
         }
-        return false;
+        return temp;
 }
+/*
+StudentsTree::node *StudentsTree::findByName(StudentsTree::node *t, string name) {
+    StudentsTree::node *temp = t;
+    while(temp != nullptr){
+        if(temp->student.getStudentName() == name) return temp;
+        temp = student < temp->student ? temp->left : temp->right;
+    }
+}
+ */
 
 void StudentsTree::print(node *t){
     if(!t) return;
