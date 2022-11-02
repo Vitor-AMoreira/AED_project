@@ -19,10 +19,11 @@ private:
     list<Class> classes;
 
 public:
-    Student(string studentCode, string studentName, Class &studentClass);
+    Student();
+    Student(string studentCode, string studentName, Class studentClass);
     void print();
 
-    void pushClass(Class &studentClass);
+    void pushClass(Class studentClass);
     void removeClass(string ucCode); //To remove a student from a Uc/class
 
     /*

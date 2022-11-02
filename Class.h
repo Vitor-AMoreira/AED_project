@@ -20,7 +20,8 @@ class Class {
         int studentsNumber = 0;
 
     public :
-        Class(string ucCode, string classCode, string weekday, string startHour, string duration, string type);
+        Class();
+        Class(string classCode, string ucCode, string weekday, string startHour, string duration, string type);
 
         const string getUcCode();
         const string getClassCode();

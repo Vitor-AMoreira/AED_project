@@ -8,7 +8,6 @@
 #include <iostream>
 #include <fstream>
 #include <list>
-#include "ReadStudent.h"
 #include "Class.h"
 
 using namespace std;

@@ -2,7 +2,9 @@
 
 using namespace std;
 
-Student::Student(string studentCode, string studentName,Class &studentClass) {
+Student::Student() {}
+
+Student::Student(string studentCode, string studentName,Class studentClass) {
     this->studentCode = studentCode;
     this->studentName = studentName;
 
@@ -11,15 +13,17 @@ Student::Student(string studentCode, string studentName,Class &studentClass) {
 
     //To add 1 student to the class StudentsNumber
     studentClass.addStudentsNumber();
-
+    cout << studentClass.getStudentsNumber() << endl;
 }
 
 void Student::print(){
     cout << studentCode << "," << studentName;
 }
 
-void Student::pushClass(Class &studentClass) {
+void Student::pushClass(Class studentClass) {
     classes.push_back(studentClass);
+    studentClass.addStudentsNumber();
+    cout << "Entrou" << endl;
 }
 /*
 void Student::removeClass(string ucCode) {

@@ -6,9 +6,10 @@
 
 ReadStudent::ReadStudent(){}
 
-void ReadStudent::read(string file_name) {
+StudentsTree ReadStudent::read(string file_name, ReadClasses &readClasses) {
 
     StudentsTree tree;
+    StudentsTree::node *temp;
 
     ifstream file(file_name);
     string line;
@@ -16,10 +17,13 @@ void ReadStudent::read(string file_name) {
     string delimiter = ";";
     int count = 0;
 
-    while (getline(file, line)) {
-        if (count++ == 0) continue;
+    vector<string> array_of_fields;
 
-        vector<string> array_of_fields;
+    Class c;
+    Student student;
+
+    while (getline(file, line)) {
+        if (count++ == 0) {continue; }
         int pos = 0;
 
         while ((pos = line.find(delimiter)) != string::npos) {
@@ -29,15 +33,23 @@ void ReadStudent::read(string file_name) {
             if (line.find(delimiter) == string::npos) array_of_fields.push_back(line.substr(0, pos));
         }
 
-        //Class c = ReadClasses::findClass(array_of_fields[2], array_of_fields[3]);
-        //Criar um atributo e um método que coloquem o estudante nessa classe. Pode ser simplesmente colocar o Código
-        //de estudante
-        //Student student(array_of_fields[0], array_of_fields[1], c);
-        StudentsTree::node *temp;
 
-        if (tree.head == nullptr) tree.head = tree.build(tree.head, student); //Case if the tree is empty
-        else if ((temp = tree.find(tree.head, student)) != nullptr) {
-            temp->student.pushClass(c);
-        } else tree.build(tree.head, student); //If students isnt present, add it
+        student = Student(array_of_fields[0], array_of_fields[1],
+                          readClasses.findClass(array_of_fields[2], array_of_fields[3]));
+
+        temp = tree.find(tree.head, student);
+        cout << "temp --->" << temp << endl;
+
+        if (tree.head == nullptr) {
+            tree.head = tree.build(tree.head, student);
+        }else if( temp != nullptr) {
+            cout << "Aqui";
+            temp->student.pushClass(readClasses.findClass(array_of_fields[2], array_of_fields[3]));
+        }else {
+            cout << "As vezes aqu9=i" << endl;
+            tree.head = tree.build(tree.head, student); //If students isnt present, add it
+        }
+        array_of_fields.clear();
     }
+    return tree;
 }

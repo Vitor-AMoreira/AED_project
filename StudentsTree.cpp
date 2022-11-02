@@ -18,7 +18,7 @@ StudentsTree::node *StudentsTree::find(StudentsTree::node *t, Student &student) 
             if(t->student == student) return temp;
             temp = student < temp->student ? temp->left : temp->right;
         }
-        return temp;
+        return nullptr;
 }
 /*
 StudentsTree::node *StudentsTree::findByName(StudentsTree::node *t, string name) {

@@ -7,7 +7,9 @@
 
 using namespace std;
 
-Class::Class(string ucCode, string classCode, string weekday, string startHour, string duration, string type){
+Class::Class(){}
+
+Class::Class(string classCode, string ucCode, string weekday, string startHour, string duration, string type){
 
     float startHourFloat = stof(startHour);
     float durationFloat = stof(duration);
@@ -21,11 +23,11 @@ Class::Class(string ucCode, string classCode, string weekday, string startHour, 
 }
 
 const string Class::getUcCode() {
-    return ucCode;
+    return this->ucCode;
 }
 
 const string Class::getClassCode() {
-    return classCode;
+    return this->classCode;
 }
 
 const string Class::getWeekday() {
@@ -49,7 +51,7 @@ int Class::getStudentsNumber() {
 }
 
 void Class::addStudentsNumber() {
-    this->studentsNumber++;
+    this->studentsNumber = this->studentsNumber + 1;
 }
 
 bool Class::isClassBalanced(vector<Class> classes) {

@@ -17,7 +17,7 @@ using namespace std;
 class ReadStudent {
     public :
         ReadStudent();
-        void read(string file_name);
+        StudentsTree read(string file_name, ReadClasses &readClasses);
 };
 
 
