@@ -33,9 +33,9 @@ ReadClasses::ReadClasses() {
 
 }
 
-/*vector<Class> ReadClasses::getAllClasses() {
-    return this->allClasses;
-}*/
+vector<Class*> ReadClasses::getAllClasses() {
+    return allClasses;
+}
 
 Class *ReadClasses::findClass(string ucCode, string classCode) const{
     for(Class *c: allClasses) {

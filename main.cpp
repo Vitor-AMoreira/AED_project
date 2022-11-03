@@ -1,6 +1,9 @@
 #include <iostream>
 #include "ReadStudent.h"
 #include "ReadClasses.h"
+#include "Menu.h"
+#include <string>
+#include "Class.h"
 
 int main() {
 
@@ -27,16 +30,34 @@ int main() {
 
     tree = readStudent.read(readClasses);
 
-    /*
-      202061612 Aristides L.EIC013 2LEIC10
-      202061612 Aristides L.EIC021 3LEIC10
-      202061612 Aristides L.EIC022 3LEIC08
-      202061612 Aristides L.EIC023 3LEIC11
-      202061612 Aristides L.EIC025 3LEIC10
-     */
+    //First question
+    while(true) {
+        Menu menu;
+        if(menu.getLastInput() == "1") {
 
-    Student aristides = tree.findByCode(tree.head, "202061612")->student;
-    aristides.pushClass(readClasses.findClass("L.EIC013", "2LEIC10"));
+            //Get the input when the UCs are shown
+            menu.getUcs();
+            if(menu.getExit()) break;
+
+            //Get the input when the classes are shown
+            Class class_ = menu.getUcClasses(menu.getLastInput());
+            if(menu.getExit()) break;
+
+            //Get the students from the class chosen
+            menu.getClassStudents(tree, class_);
+            break;
+        }else if(menu.getLastInput() == "2") {
+            menu.getAllStudents();
+            break;
+        }
+    }
+
+
+
+
+
+
+
 
     return 0;
 }

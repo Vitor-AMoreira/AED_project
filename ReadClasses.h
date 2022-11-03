@@ -18,7 +18,7 @@ private:
 public :
     ReadClasses();
 
-    //vector<Class> getAllClasses();
+    vector<Class*> getAllClasses();
     Class *findClass(string ucCode, string classCode) const;
 };
 
