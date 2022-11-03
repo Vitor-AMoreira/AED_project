@@ -23,17 +23,19 @@ class Class {
         Class();
         Class(string classCode, string ucCode, string weekday, string startHour, string duration, string type);
 
-        const string getUcCode();
-        const string getClassCode();
-        const string getWeekday();
-        const float getStartHour();
-        const float getDuration();
-        const string getType();
+        const string getUcCode() const;
+        const string getClassCode() const;
+        const string getWeekday() const;
+        const float getStartHour() const;
+        const float getDuration() const;
+        const string getType() const;
 
         void addStudentsNumber();
-        int getStudentsNumber();
+        void decStudentsNumber();
+        int getStudentsNumber() const;
 
         bool isClassBalanced(vector<Class> classes);
+        bool areBalanced(Class *c);
 };
 
 

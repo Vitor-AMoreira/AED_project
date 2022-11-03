@@ -19,8 +19,9 @@ class StudentsTree {
 
         StudentsTree();
         node *build(node *t, Student &student);
-        node *find(node *t, Student &student);
-        //  node *findByName(node *t, string name);
+        node *findByObj(node *t, Student &student);
+        node *findByCode(node *t, string studentCode);
+
         void print(node *t);
 
 };

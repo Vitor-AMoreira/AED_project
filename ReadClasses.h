@@ -14,12 +14,12 @@ using namespace std;
 
 class ReadClasses {
 private:
-    vector<Class> allClasses;
+    vector<Class*> allClasses;
 public :
     ReadClasses();
 
-    vector<Class> getAllClasses();
-    Class findClass(string ucCode, string classCode);
+    //vector<Class> getAllClasses();
+    Class *findClass(string ucCode, string classCode) const;
 };
 
 

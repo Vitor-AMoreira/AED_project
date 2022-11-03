@@ -22,31 +22,31 @@ Class::Class(string classCode, string ucCode, string weekday, string startHour, 
     this->type = type;
 }
 
-const string Class::getUcCode() {
+const string Class::getUcCode() const{
     return this->ucCode;
 }
 
-const string Class::getClassCode() {
+const string Class::getClassCode() const{
     return this->classCode;
 }
 
-const string Class::getWeekday() {
+const string Class::getWeekday() const{
     return weekday;
 }
 
-const float Class::getStartHour() {
+const float Class::getStartHour() const{
     return startHour;
 }
 
-const float Class::getDuration() {
+const float Class::getDuration() const{
     return duration;
 }
 
-const string Class::getType() {
+const string Class::getType() const{
     return type;
 }
 
-int Class::getStudentsNumber() {
+int Class::getStudentsNumber() const{
     return studentsNumber;
 }
 
@@ -54,12 +54,21 @@ void Class::addStudentsNumber() {
     this->studentsNumber = this->studentsNumber + 1;
 }
 
+void Class::decStudentsNumber(){
+    this->studentsNumber = this->studentsNumber - 1;
+};
+
 bool Class::isClassBalanced(vector<Class> classes) {
     for(Class i: classes) {
         if(i.getStudentsNumber() >= this->getStudentsNumber() + 4 || i.getStudentsNumber() <= this->getStudentsNumber() - 4) {
             return false;
         }
     }
-
     return true;
+}
+
+bool Class::areBalanced(Class *c){
+    int diff = this->getStudentsNumber() - c->getStudentsNumber();
+    diff = diff > 0 ? diff : -diff; //Getting the modulos
+    return diff <= 4;
 }

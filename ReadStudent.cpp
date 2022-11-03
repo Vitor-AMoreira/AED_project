@@ -6,12 +6,12 @@
 
 ReadStudent::ReadStudent(){}
 
-StudentsTree ReadStudent::read(string file_name, ReadClasses &readClasses) {
+StudentsTree ReadStudent::read(ReadClasses &readClasses) {
 
     StudentsTree tree;
     StudentsTree::node *temp;
 
-    ifstream file(file_name);
+    ifstream file("../schedule/students_classes.csv");
     string line;
     string field;
     string delimiter = ";";
@@ -19,7 +19,6 @@ StudentsTree ReadStudent::read(string file_name, ReadClasses &readClasses) {
 
     vector<string> array_of_fields;
 
-    Class c;
     Student student;
 
     while (getline(file, line)) {
@@ -37,17 +36,14 @@ StudentsTree ReadStudent::read(string file_name, ReadClasses &readClasses) {
         student = Student(array_of_fields[0], array_of_fields[1],
                           readClasses.findClass(array_of_fields[2], array_of_fields[3]));
 
-        temp = tree.find(tree.head, student);
-        cout << "temp --->" << temp << endl;
-
-        if (tree.head == nullptr) {
+        if (tree.head == nullptr) { //Case that the tree is empty
             tree.head = tree.build(tree.head, student);
-        }else if( temp != nullptr) {
-            cout << "Aqui";
+        }else if( (temp = tree.findByObj(tree.head, student)) != nullptr) {
+            //Case the student already exits in the tree, so just push the class
             temp->student.pushClass(readClasses.findClass(array_of_fields[2], array_of_fields[3]));
         }else {
-            cout << "As vezes aqu9=i" << endl;
-            tree.head = tree.build(tree.head, student); //If students isnt present, add it
+            //New student in the tree
+            tree.head = tree.build(tree.head, student);
         }
         array_of_fields.clear();
     }

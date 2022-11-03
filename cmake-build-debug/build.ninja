@@ -85,12 +85,6 @@ build CMakeFiles/Project.dir/StudentsTree.cpp.obj: CXX_COMPILER__Project_Debug C
   OBJECT_DIR = CMakeFiles\Project.dir
   OBJECT_FILE_DIR = CMakeFiles\Project.dir
 
-build CMakeFiles/Project.dir/Animal.cpp.obj: CXX_COMPILER__Project_Debug C$:/Users/victo/CLionProjects/AED_project/Animal.cpp || cmake_object_order_depends_target_Project
-  DEP_FILE = CMakeFiles\Project.dir\Animal.cpp.obj.d
-  FLAGS = -g -std=gnu++14
-  OBJECT_DIR = CMakeFiles\Project.dir
-  OBJECT_FILE_DIR = CMakeFiles\Project.dir
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Project
@@ -99,7 +93,7 @@ build CMakeFiles/Project.dir/Animal.cpp.obj: CXX_COMPILER__Project_Debug C$:/Use
 #############################################
 # Link the executable Project.exe
 
-build Project.exe: CXX_EXECUTABLE_LINKER__Project_Debug CMakeFiles/Project.dir/main.cpp.obj CMakeFiles/Project.dir/Class.cpp.obj CMakeFiles/Project.dir/ReadClasses.cpp.obj CMakeFiles/Project.dir/ReadStudent.cpp.obj CMakeFiles/Project.dir/Student.cpp.obj CMakeFiles/Project.dir/StudentsTree.cpp.obj CMakeFiles/Project.dir/Animal.cpp.obj
+build Project.exe: CXX_EXECUTABLE_LINKER__Project_Debug CMakeFiles/Project.dir/main.cpp.obj CMakeFiles/Project.dir/Class.cpp.obj CMakeFiles/Project.dir/ReadClasses.cpp.obj CMakeFiles/Project.dir/ReadStudent.cpp.obj CMakeFiles/Project.dir/Student.cpp.obj CMakeFiles/Project.dir/StudentsTree.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Project.dir

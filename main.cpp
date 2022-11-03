@@ -1,12 +1,6 @@
 #include <iostream>
-#include <fstream>
-#include <string>
-
-#include "Student.h"
-#include "Class.h"
 #include "ReadStudent.h"
 #include "ReadClasses.h"
-#include "Animal.h"
 
 int main() {
 
@@ -28,38 +22,21 @@ int main() {
 
 
     StudentsTree tree;
-
     ReadClasses readClasses;
     ReadStudent readStudent;
-    readStudent.read("../schedule/students_classes.csv", readClasses);
 
-    cout << readClasses.findClass("L.EIC023","3LEIC07").getStudentsNumber();
-    //Student s1 = tree.head->student;
+    tree = readStudent.read(readClasses);
 
-    //s1.print();
+    /*
+      202061612 Aristides L.EIC013 2LEIC10
+      202061612 Aristides L.EIC021 3LEIC10
+      202061612 Aristides L.EIC022 3LEIC08
+      202061612 Aristides L.EIC023 3LEIC11
+      202061612 Aristides L.EIC025 3LEIC10
+     */
 
-   /*
-    Animal dog("Cachorro", 4);
-    if(dog.getName() == "Cachorro") cout << "PASSOU!";
+    Student aristides = tree.findByCode(tree.head, "202061612")->student;
+    aristides.pushClass(readClasses.findClass("L.EIC013", "2LEIC10"));
 
-    Class c1("01","01", "01", "01", "01", "01");
-    Class c2("02","02", "02", "02", "02", "02");
-    Class c3("03","03", "03", "03", "03", "03");
-
-    Student s1("01", "Victor", c1);
-    Student s2("02", "Vitor", c2);
-    Student s3("03", "Daniel", c3);
-    Student s4("04", "Daniel", c3);
-    Student s5("05", "Daniel", c3);
-
-    StudentsTree tree;
-
-    tree.head = tree.build(tree.head, s1);
-    tree.head = tree.build(tree.head,s2);
-    tree.head = tree.build(tree.head,s3);
-
-    if(!tree.find(tree.head, s4)) tree.build(tree.head, s4);
-    tree.print(tree.head);
-    */
     return 0;
 }

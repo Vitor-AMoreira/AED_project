@@ -7,6 +7,7 @@
 #include <list>
 #include <iostream>
 #include "Class.h"
+#include "ReadClasses.h"
 
 using namespace std;
 
@@ -16,21 +17,22 @@ private:
 
     string studentCode;
     string studentName;
-    list<Class> classes;
+    list<Class*> classes;
 
 public:
+
     Student();
-    Student(string studentCode, string studentName, Class studentClass);
+    Student(string studentCode, string studentName,  Class *studentClass);
     void print();
 
-    void pushClass(Class studentClass);
-    void removeClass(string ucCode); //To remove a student from a Uc/class
+    void pushClass(Class *studentClass);
+    void removeClass(Class *studentClass); //To remove a student from a Uc/class
+    void changeToClass(Class *studentClass);
 
-    /*
-    list<Class> getClasses();
-    string getStudentCode();
-    */
+
+    list<Class*> getClasses();
     string getStudentName();
+    string getStudentCode();
 
     bool operator==(Student student);
     bool operator<(Student student);

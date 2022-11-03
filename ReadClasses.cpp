@@ -26,22 +26,22 @@ ReadClasses::ReadClasses() {
             if(line.find(delimiter) == string::npos) array_of_fields.push_back(line.substr(0,pos));
         }
 
-        Class class_(array_of_fields[0], array_of_fields[1], array_of_fields[2], array_of_fields[3], array_of_fields[4], array_of_fields[5]);
+        Class *class_ = new Class(array_of_fields[0], array_of_fields[1], array_of_fields[2], array_of_fields[3], array_of_fields[4], array_of_fields[5]);
         allClasses.push_back(class_);
         array_of_fields.clear();
     }
 
 }
 
-vector<Class> ReadClasses::getAllClasses() {
+/*vector<Class> ReadClasses::getAllClasses() {
     return this->allClasses;
-}
+}*/
 
-Class ReadClasses::findClass(string ucCode, string classCode) {
-    for(Class c: this->allClasses) {
-        if (c.getUcCode() == ucCode && c.getClassCode() == classCode) {
+Class *ReadClasses::findClass(string ucCode, string classCode) const{
+    for(Class *c: allClasses) {
+        if (c->getUcCode() == ucCode && c->getClassCode() == classCode) {
             return c;
         }
     }
-    return Class("01","01","01","01","01","01");
+    return nullptr;
 }
