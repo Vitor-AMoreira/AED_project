@@ -9,6 +9,9 @@
 #include <set>
 #include <string>
 #include <algorithm>
+#include <list>
+#include <string.h>
+
 using namespace std;
 
 Menu::Menu() {
@@ -21,22 +24,51 @@ Menu::Menu() {
     cout << " Choose a number: ";
     cin >> input;
     if(input == "0") exit = 1;
-    else { lastInput = input; }
+    else {
+        lastInput = input;
+    }
 };
 
 /*
  * -- MENU --
- * [1] GET INFO FROM CLASSES -> FROM UC -> ALL UCS -> ALL CLASSES -> ALL STUDENTS
+ * [1] GET INFO FROM CLASSES -> ALL UCS -> ALL CLASSES -> ALL STUDENTS
  *                              FROM YEAR -> ALL STUDENTS
- * [2] GET INFO FROM STUDENTS -> ALL STUDENTS -> GIVES: - UCs / Classes / Hours
+ * [2] GET INFO FROM STUDENTS -> STUDENTS BY UCS -> GIVES: - UCs / Classes / Hours
+ *                               STUDENTS BY
  */
 
 string Menu::getLastInput() {
     return this->lastInput;
 }
 
+void Menu::setOrder() {
+    string input;
+    cout << "SELECT THE ORDER YOU WANT TO VIEW THE DATA" << endl;
+    cout << "[1] Ascending" << endl;
+    cout << "[2] Descending" << endl;
+    cout << "------------------------------------------" << endl;
+    cout << "Order: ";
+    cin >> input;
+    if(input == "1") {
+        lastInputOrder = 0;
+    }else if(input == "2") {
+        lastInputOrder = 1;
+    } else { exit = 1;}
+}
+
+bool Menu::getOrder() {
+    return lastInputOrder;
+}
+
 bool Menu::getExit() {
     return this->exit;
+}
+
+bool Menu::strcmp(string a, string b) {
+    if(a.compare(b) > 0)
+        return true;
+    else
+        return false;
 }
 
 void Menu::getUcs() {
@@ -44,16 +76,26 @@ void Menu::getUcs() {
     string input;
     vector<Class*> classes = readClasses.getAllClasses();
 
-    set<string> uniqueUcs;
+    set<string> ucsSet = {};
+
     for(Class *i:classes) {
-        uniqueUcs.insert(i->getUcCode());
+        ucsSet.insert(i->getUcCode());
+    }
+
+    vector<string> ucs;
+    ucs.assign(begin(ucsSet), end(ucsSet));
+
+    // To sort the set accordingly to the given sort method
+    bool order = getOrder();
+    if(order == true) {
+        sort(begin(ucs),end(ucs), strcmp);
     }
 
     cout << "-------------------" << endl;
     cout << "   CHOOSE AN UC" << endl;
     cout << "-------------------" << endl;
 
-    for(string i: uniqueUcs) {
+    for(string i: ucs) {
         cout << "  |  " << i << "  |  " << endl;
     }
     cout << "[0]  EXIT" << endl;
@@ -61,7 +103,7 @@ void Menu::getUcs() {
     cout << "UC: ";
     cin >> input;
 
-    if(find(uniqueUcs.begin(), uniqueUcs.end(), input) != uniqueUcs.end()) {
+    if(find(ucs.begin(), ucs.end(), input) != ucs.end()) {
         lastInput = input;
     } else {
         exit = 1;
@@ -73,12 +115,21 @@ Class Menu::getUcClasses(string uc) {
     string input;
     vector<Class*> classes = readClasses.getAllClasses();
 
-    set<string> ucClasses;
+    set<string> ucClassesSet;
 
     for(Class* i: classes) {
         if(i->getUcCode() == uc) {
-            ucClasses.insert(i->getClassCode());
+            ucClassesSet.insert(i->getClassCode());
         }
+    }
+
+    vector<string> ucClasses;
+    ucClasses.assign(begin(ucClassesSet), end(ucClassesSet));
+
+    // To sort the set accordingly to the given sort method
+    bool order = getOrder();
+    if(order == true) {
+        sort(begin(ucClasses),end(ucClasses), strcmp);
     }
 
     cout << "-------------------" << endl;
@@ -94,13 +145,18 @@ Class Menu::getUcClasses(string uc) {
     cout << "Class: ";
     cin >> input;
 
-    if(find(ucClasses.begin(), ucClasses.end(), input) != ucClasses.end()) {
-        lastInput = input;
-    } else {
+    if(input == "0") {
         exit = 1;
+        return Class("", "", "", "", "", "");
+    }
+
+    if(find(ucClasses.begin(), ucClasses.end(), input) != ucClasses.end()) {
+        Class* class_ = readClasses.findClass(lastInput, input);
+        lastInput = input;
+        return *class_;
     }
 }
 
-void Menu::getClassStudents(StudentsTree tree, Class class_) {
+void Menu::getClassStudents(StudentsTree, Class) {
 
 }

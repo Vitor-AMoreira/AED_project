@@ -10,9 +10,15 @@ using namespace std;
 Class::Class(){}
 
 Class::Class(string classCode, string ucCode, string weekday, string startHour, string duration, string type){
+    float startHourFloat;
+    float durationFloat;
 
-    float startHourFloat = stof(startHour);
-    float durationFloat = stof(duration);
+    if(startHour == "") {
+        startHourFloat = 0;
+    }
+    if(duration == "") {
+        durationFloat = 0;
+    }
 
     this->ucCode = ucCode;
     this->classCode = classCode;

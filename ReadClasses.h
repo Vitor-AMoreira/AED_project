@@ -15,7 +15,7 @@ using namespace std;
 class ReadClasses {
 private:
     vector<Class*> allClasses;
-public :
+public:
     ReadClasses();
 
     vector<Class*> getAllClasses();
