@@ -9,6 +9,8 @@
 using namespace std;
 
 class StudentsTree {
+    private :
+        vector<Student> buffStudent;
     public :
         struct node{
             node *left;
@@ -22,7 +24,14 @@ class StudentsTree {
         node *findByObj(node *t, Student &student);
         node *findByCode(node *t, string studentCode);
 
-        void print(node *t);
+        // ! BUFFCLEAR MUST PRECED THE NEXT THREE FUNCTIONS
+        void clearBuffStudent();
+
+        void allStudentsInAClass(node *t, Class *c);
+        void moreThanXClass(node *t, int &x);
+        void allStudentsInAYear(node *t, string &year);
+
+        vector<Student> getBuffStudent();
 
 };
 

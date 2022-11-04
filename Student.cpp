@@ -76,6 +76,14 @@ void Student::changeToClass(Class *studentClass) {
     }
 }
 
+bool Student::isInClass(Class *studentClass) {
+    for(auto it = classes.begin(); it != classes.end(); it++) {
+        //Check if the student already is in the class
+        if ((*it) == studentClass) return true;
+    }
+    return false;
+}
+
 
 
 

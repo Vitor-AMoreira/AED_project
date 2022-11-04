@@ -35,10 +35,36 @@ StudentsTree::node *StudentsTree::findByCode(StudentsTree::node *t, string stude
     return nullptr;
 }
 
-void StudentsTree::print(node *t){
+//Loops
+//1 - All students in a certain class
+//2 - All students that have more than X class
+//3 - All students in a year
+
+void StudentsTree::clearBuffStudent() {
+    buffStudent.clear();
+}
+
+void StudentsTree::allStudentsInAClass(StudentsTree::node *t, Class *c) {
     if(!t) return;
-    print(t->left);
-    t->student.print();
-    cout << endl;
-    print(t->right);
+    allStudentsInAClass(t->left, c);
+    if(t->student.isInClass(c)) buffStudent.push_back(t->student);
+    allStudentsInAClass(t->right, c);
+}
+
+void StudentsTree::moreThanXClass(StudentsTree::node *t, int &x) {
+    if(!t) return;
+    moreThanXClass(t->left, x);
+    if(t->student.getClasses().size() >= x) buffStudent.push_back(t->student);
+    moreThanXClass(t->right, x);
+}
+
+void StudentsTree::allStudentsInAYear(StudentsTree::node *t, string &year) {
+    if(!t) return;
+    allStudentsInAYear(t->left, year);
+    if(t->student.getStudentCode().substr(0,4) == year) buffStudent.push_back(t->student);
+    allStudentsInAYear(t->right, year);
+}
+
+vector<Student> StudentsTree::getBuffStudent() {
+    return buffStudent;
 }

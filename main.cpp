@@ -24,9 +24,7 @@ int main() {
     //Depois executa a função setStudentsNumber(ReadStudents.getAllClasses()) de cada class
     // para saber quantos alunos cada class possui
 
-    ReadClasses readClasses;
-    ReadStudent readStudent;
-    StudentsTree tree = readStudent.read(readClasses);
+
 
     /*
     //First question

@@ -28,6 +28,7 @@ public:
     void pushClass(Class *studentClass);
     void removeClass(Class *studentClass); //To remove a student from a Uc/class
     void changeToClass(Class *studentClass);
+    bool isInClass(Class *studentClass);
 
 
     list<Class*> getClasses();
