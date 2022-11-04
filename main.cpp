@@ -4,6 +4,8 @@
 #include "Menu.h"
 #include <string>
 #include "Class.h"
+#include "Request.h"
+#include "RequestsQueue.h"
 
 int main() {
 
@@ -22,17 +24,15 @@ int main() {
     //Depois executa a função setStudentsNumber(ReadStudents.getAllClasses()) de cada class
     // para saber quantos alunos cada class possui
 
-
-
-    StudentsTree tree;
     ReadClasses readClasses;
     ReadStudent readStudent;
+    StudentsTree tree = readStudent.read(readClasses);
 
-    tree = readStudent.read(readClasses);
-
+    /*
     //First question
     while(true) {
         Menu menu;
+
         if(menu.getLastInput() == "1") {
 
             //Get the input when the UCs are shown
@@ -51,13 +51,6 @@ int main() {
             break;
         }
     }
-
-
-
-
-
-
-
-
+    */
     return 0;
 }

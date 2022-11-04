@@ -5,7 +5,13 @@
 #include "Request.h"
 
 
-    Request::Request() { }
+    Request::Request() {}
+    Request::Request(string action, string studentCode, string ucCode, string classCode) {
+        this->action = action;
+        this->studentCode = studentCode;
+        this->ucCode = ucCode;
+        this->classCode = classCode;
+    }
 
     void Request::setAction(string action){
         this->action = action;

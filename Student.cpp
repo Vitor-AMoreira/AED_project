@@ -21,7 +21,7 @@ void Student::pushClass(Class *studentClass) {
     studentClass->decStudentsNumber();
     //Check if the max capacity of the class was reached
     if(studentClass->getStudentsNumber() > 25){
-        cout << "The class is full" << endl;
+        cout << "The student cannot be added to this class\n\n\t\tCLASS IS FULL" << endl;
         return;
     }
 
@@ -39,7 +39,7 @@ void Student::pushClass(Class *studentClass) {
             (*it)->getType() == "TP" && studentClass->getType() == "TP"
             )
         {
-            cout << "The student has a class at that time" << endl;
+            cout << "The student cannot be added to this class\n\n\t\tHAS A CLASS AT THE SAME TIME" << endl;
             return;
         }
     }
@@ -48,11 +48,13 @@ void Student::pushClass(Class *studentClass) {
 }
 void Student::removeClass(Class *studentClass) {
     for(auto it = classes.begin(); it != classes.end(); it++){
-       if((*it)->getUcCode() == studentClass->getUcCode() && (*it)->getClassCode() == studentClass->getClassCode()){
-           (*it)->decStudentsNumber();
+       if((*it) == studentClass){
+           studentClass->decStudentsNumber();
            classes.erase(it);
+           return;
        }
     }
+    cout << "!!! THE STUDENT DOES NOT BELONG TO THIS CLASS !!!" << endl;
 }
 
 void Student::changeToClass(Class *studentClass) {

@@ -20,6 +20,7 @@ class Request {
 
     public :
         Request();
+        Request(string action, string studentCode, string ucCode, string classCode);
 
         void setAction(string action);
         void setStudentCode(string studentCode);
@@ -30,9 +31,6 @@ class Request {
         string getStudentCode() const;
         string getUcCode() const;
         string getClassCode() const;
-
-        void remove();
-        void add();
 };
 
 
