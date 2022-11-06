@@ -51,7 +51,7 @@ void StudentsTree::allStudentsInAClass(StudentsTree::node *t, Class *c) {
     allStudentsInAClass(t->right, c);
 }
 
-void StudentsTree::moreThanXClass(StudentsTree::node *t, int &x) {
+void StudentsTree::moreThanXClass(StudentsTree::node *t, int x) {
     if(!t) return;
     moreThanXClass(t->left, x);
     if(t->student.getClasses().size() >= x) buffStudent.push_back(t->student);

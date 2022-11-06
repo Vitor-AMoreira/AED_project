@@ -15,10 +15,15 @@ Class::Class(string classCode, string ucCode, string weekday, string startHour, 
 
     if(startHour == "") {
         startHourFloat = 0;
+    } else {
+        startHourFloat = stof(startHour);
     }
     if(duration == "") {
         durationFloat = 0;
+    } else {
+        durationFloat = stof(duration);
     }
+
 
     this->ucCode = ucCode;
     this->classCode = classCode;

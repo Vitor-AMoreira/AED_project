@@ -18,17 +18,25 @@ private:
     bool lastInputOrder = 0;
     bool exit = 0;
 public:
-    Menu(); //Done
-    string getLastInput(); //Done
-    void setOrder(); //Done
-    bool getOrder(); //Done
-    bool getExit(); //Done
-    static bool strcmp(string, string); //Doing
-    void getUcs(); //Done
-    Class getUcClasses(string); //Done
-    void getClassStudents(StudentsTree, Class); //Doing
-    //void getAllStudents();
-    //void getStudentsByYear();
+    Menu();
+    string getLastInput();
+    void setOrder();
+    bool getOrder();
+    bool getExit();
+
+    static bool strcmp(string, string);
+    static bool mapcmpGreater(pair<string, string>, pair<string, string>);
+    static bool mapcmpLess(pair<string, string>, pair<string, string>);
+
+    void getOption();//Doing
+    void getUcs();
+    Class* getUcClasses(string, ReadClasses);
+    void getClassStudents(StudentsTree, StudentsTree::node*, Class*);
+    void showStudentDetails(StudentsTree, StudentsTree::node*);
+    void getYearOption();
+    void getStudentsByYear(StudentsTree, StudentsTree::node*);
+    void getInputOfCountOfUcs();
+    void getStudentsByCountOfUcs(StudentsTree, StudentsTree::node*);
 
 };
 
