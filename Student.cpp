@@ -39,7 +39,7 @@ void Student::pushClass(Class *studentClass) {
             (*it)->getType() == "TP" && studentClass->getType() == "TP"
             )
         {
-            cout << "The student cannot be added to this class\n\n\t\tHAS A CLASS AT THE SAME TIME" << endl;
+            cout << "The student cannot be added to this class \n HAS A CLASS AT THE SAME TIME" << endl;
             return;
         }
     }

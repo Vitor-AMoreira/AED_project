@@ -28,7 +28,7 @@ class StudentsTree {
         void clearBuffStudent();
 
         void allStudentsInAClass(node *t, Class *c);
-        void moreThanXClass(node *t, int &x);
+        void moreThanXClass(node *t, int x);
         void allStudentsInAYear(node *t, string &year);
 
         vector<Student> getBuffStudent();
