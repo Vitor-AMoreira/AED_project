@@ -19,14 +19,15 @@ using namespace std;
 
 Menu::Menu() {
     string input;
-    cout << "\n\n\n\n\n\n\n\n\n\n\n";
+    cout << "\n";
     cout << " --------- MENU --------- " << endl;
     cout << " [1] See students data" << endl;
     cout << " [2] Make changes" << endl;
+    cout << " [3] Save changes" << endl;
+    cout << " [4] Apply all changes saved" << endl;
     cout << " [0] Quit" << endl;
     cout << " ------------------------ " << endl;
     cout << " Choose a number: ";
-    cout << "\n\n\n";
     cin >> input;
     if(input == "0") exit = 1;
     else {
@@ -76,6 +77,14 @@ bool Menu::strcmp(string a, string b) {
         return false;
 }
 
+bool Menu::isNumber(string& s) {
+    for (char const &ch : s) {
+        if (isdigit(ch) == 0)
+            return false;
+    }
+    return true;
+}
+
 bool Menu::mapcmpGreater(pair<string, string> a,pair<string, string> b) {
     if(a.second.compare(b.second) > 0)
         return true;
@@ -97,6 +106,7 @@ void Menu::getOption() {
     cout << "[1] Get students by Ucs/Classes" << endl;
     cout << "[2] Get students by year" << endl;
     cout << "[3] Get students with more classes" << endl;
+    cout << "[4] Get a student by their code" << endl;
     cout << "[0]  EXIT" << endl;
     cout << "-------------------" << endl;
     cout << "Option: ";
@@ -105,9 +115,12 @@ void Menu::getOption() {
     string input;
     cin >> input;
 
-    if(input == "1" || input == "2" || input == "3") {
+    if(input == "1" || input == "2" || input == "3" || input == "4") {
         lastInput = input;
+    } else if(input == "0"){
+        exit = 1;
     } else {
+        cout << "Invalid input!" << endl;
         exit = 1;
     }
 
@@ -147,7 +160,10 @@ void Menu::getUcs() {
 
     if(find(ucs.begin(), ucs.end(), input) != ucs.end()) {
         lastInput = input;
+    } else if(input == "0"){
+        exit = 1;
     } else {
+        cout << "Invalid input!" << endl;
         exit = 1;
     }
 }
@@ -196,6 +212,7 @@ Class* Menu::getUcClasses(string uc, ReadClasses readClasses) {
         lastInput = input;
         return class_;
     } else {
+        cout << "Invalid input!" << endl;
         exit = 1;
         return nullptr;
     }
@@ -235,13 +252,12 @@ void Menu::getClassStudents(StudentsTree tree, StudentsTree::node* head, Class* 
     cout << "Student code: ";
     cin >> input;
 
-    StudentsTree::node* student = tree.findByCode(head, input);
-
-    if (student == nullptr) {
+    if(input.size() != 9 || !isNumber(input)) {
         exit = 1;
-    } else {
-        lastInput = input;
+        return;
     }
+
+    lastInput = input;
 }
 
 void Menu::showStudentDetails(StudentsTree tree, StudentsTree::node * head) {
@@ -260,14 +276,13 @@ void Menu::showStudentDetails(StudentsTree tree, StudentsTree::node * head) {
     list<Class*> classes = student.getClasses();
 
     for(Class* i: classes) {
-        cout << i->getUcCode() << " - " << i->getClassCode() << " - " << i->getType() << endl;
+        cout << setw(10) <<i->getUcCode() << setw(10) << " - " << setw(10) << i->getClassCode() << setw(10) << " - " << setw(7) << i->getType() << setw(10) << endl;
         cout << "Week day: " << i->getWeekday() << " | Start hour: " << i->getStartHour() << " | Duration: " << i->getDuration() << " hours" << endl;
         cout << "---------------------------------------------------------" << endl;
     }
     cout << "[0] Return to main menu" << endl;
     string input;
     cin >> input;
-
 
     exit = 1;
 }
@@ -325,7 +340,7 @@ void Menu::getStudentsByYear(StudentsTree tree, StudentsTree::node * head) {
     string input;
     cin >> input;
 
-    if(input.size() != 9) {
+    if(input.size() != 9 || !isNumber(input)) {
         exit = 1;
     } else {
         lastInput = input;
@@ -384,9 +399,95 @@ void Menu::getStudentsByCountOfUcs(StudentsTree tree, StudentsTree::node *head) 
     string input;
     cin >> input;
 
-    if(input.size() != 9) {
+    if(input.size() != 9 || !isNumber(input)) {
         exit = 1;
     } else {
         lastInput = input;
     }
+}
+
+void Menu::getStudentCode() {
+    cout << "-----------------------------------------------------" << endl;
+    cout << "  INSERT THE CODE OF THE STUDENT YOU WANT TO CHANGE " << endl;
+    cout << "-----------------------------------------------------" << endl;
+    cout << "Student code: ";
+
+    string input;
+    cin >> input;
+
+    if(input.size() != 9 || !isNumber(input)) {
+        cout << "Invalid input!" << endl;
+        exit = 1;
+    } else {
+        lastInput = input;
+    }
+}
+
+Student Menu::showStudentDetailsToChange(StudentsTree tree, StudentsTree::node * head) {
+    string studentCode = getLastInput();
+    Student student = tree.findByCode(head, studentCode)->student;
+
+    cout << "---------------------------------------------------------" << endl;
+    cout << "           ALL DETAILS ABOUT THE STUDENT CHOSEN        " << endl;
+    cout << "---------------------------------------------------------" << endl;
+    cout << student.getStudentCode() << " | " << student.getStudentName() << endl;
+
+    cout << "---------------------------------------------------------" << endl;
+    cout << "                        CLASSES                          " << endl;
+    cout << "---------------------------------------------------------" << endl;
+
+    list<Class*> classes = student.getClasses();
+
+    for(Class* i: classes) {
+        cout << i->getUcCode() << " - " << i->getClassCode() << " - " << i->getType() << endl;
+        cout << "Week day: " << i->getWeekday() << " | Start hour: " << i->getStartHour() << " | Duration: " << i->getDuration() << " hours" << endl;
+        cout << "---------------------------------------------------------" << endl;
+    }
+    cout << "[1] To add a UC and class" << endl;
+    cout << "[2] To remove a UC and class" << endl;
+    cout << "[0] EXIT" << endl;
+    cout << "Option: ";
+
+    string input;
+    cin >> input;
+
+    if(input == "1") {
+        lastInput = "ADD";
+    } else if(input == "2") {
+        lastInput = "REMOVE";
+    } else {
+        exit = 1;
+    }
+    return student;
+}
+
+void Menu::makeChanges(ReadClasses readClasses,Student &student, RequestsQueue &queue, StudentsTree tree, StudentsTree::node *head) {
+    cout << "---------------------------------------------------------" << endl;
+    cout << "  INSERT THE UC AND CLASS CODE YOU WANT TO "               << lastInput << endl;
+    cout << "---------------------------------------------------------" << endl;
+
+    cout << "UC code: ";
+    string ucCode;
+    cin >> ucCode;
+
+    cout << "Class code: ";
+    string classCode;
+    cin >> classCode;
+
+    Class* class_ = readClasses.findClass(ucCode, classCode);
+
+    if(class_ == nullptr) {
+        cout << "\n Class not found!" << endl;
+        exit = 1;
+        return;
+    }
+
+    Request r(lastInput.substr(0, 1), student.getStudentCode(), class_->getUcCode(), class_->getClassCode());
+
+    queue.push(r);
+
+    cout << "Your request was added in our queue!" << endl;
+
+    exit = 1;
+
 }

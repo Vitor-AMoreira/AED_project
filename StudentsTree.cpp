@@ -30,6 +30,7 @@ StudentsTree::node *StudentsTree::findByCode(StudentsTree::node *t, string stude
         if(temp->student.getStudentCode() == studentCode) {
             return temp;
         }
+
         temp = stol(studentCode) < stol(temp->student.getStudentCode()) ? temp->left : temp->right;
     }
     return nullptr;

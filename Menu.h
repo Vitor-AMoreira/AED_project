@@ -9,6 +9,7 @@
 #include <string>
 #include "Class.h"
 #include "StudentsTree.h"
+#include "RequestsQueue.h"
 
 using namespace std;
 
@@ -18,17 +19,21 @@ private:
     bool lastInputOrder = 0;
     bool exit = 0;
 public:
+    //Basic get methods
     Menu();
     string getLastInput();
     void setOrder();
     bool getOrder();
     bool getExit();
 
+    //Helper methods
     static bool strcmp(string, string);
     static bool mapcmpGreater(pair<string, string>, pair<string, string>);
     static bool mapcmpLess(pair<string, string>, pair<string, string>);
+    static bool isNumber(string&);
 
-    void getOption();//Doing
+    //Visualization methods
+    void getOption();
     void getUcs();
     Class* getUcClasses(string, ReadClasses);
     void getClassStudents(StudentsTree, StudentsTree::node*, Class*);
@@ -37,6 +42,11 @@ public:
     void getStudentsByYear(StudentsTree, StudentsTree::node*);
     void getInputOfCountOfUcs();
     void getStudentsByCountOfUcs(StudentsTree, StudentsTree::node*);
+
+    //Change methods
+    void getStudentCode();
+    Student showStudentDetailsToChange(StudentsTree, StudentsTree::node*);
+    void makeChanges(ReadClasses, Student&, RequestsQueue&, StudentsTree, StudentsTree::node*);
 
 };
 

@@ -20,17 +20,23 @@ void RequestsQueue::pop(){
     if(!requestsQueue.empty()){
 
         Request request = requestsQueue.front();
+
         requestsQueue.pop();
+
+        //To print what request is being executed
+        if(request.getAction() == "A") {
+            cout << "\nThe class " << request.getUcCode() << "-" << request.getClassCode() << " was added to the student " << request.getStudentCode() << endl;
+        } else if (request.getAction() == "R") {
+            cout << "\nThe class " << request.getUcCode() << "-" << request.getClassCode() << " was removed from the student " << request.getStudentCode() << endl;
+        }
 
         StudentsTree::node *temp = tree.findByCode(tree.head, request.getStudentCode());
         Class *c = readClasses.findClass(request.getUcCode(),request.getClassCode());
 
         if(request.getAction() == "A"){
-
            temp->student.pushClass(c);
 
         }else if(request.getAction() == "R"){
-
             temp->student.removeClass(c);
 
         }
@@ -74,8 +80,9 @@ void RequestsQueue::download() {
             line.erase(0, pos + delimiter.length());
             if (line.find(delimiter) == string::npos) array_of_fields.push_back(line.substr(0, pos));
         }
-         request = Request(array_of_fields[0], array_of_fields[1],array_of_fields[2],array_of_fields[3]);
-         push(request);
+        request = Request(array_of_fields[0], array_of_fields[1],array_of_fields[2],array_of_fields[3]);
+        push(request);
+        array_of_fields.clear();
     }
     file.close();
 

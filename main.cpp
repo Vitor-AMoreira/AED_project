@@ -3,18 +3,17 @@
 #include "ReadClasses.h"
 #include "Menu.h"
 #include <string>
-#include <string.h>
-#include <algorithm>
 #include "Class.h"
-#include "Request.h"
 #include "RequestsQueue.h"
-#include <map>
 
 int main() {
 
     ReadClasses readClasses;
     ReadStudent readStudent;
     StudentsTree tree = readStudent.read(readClasses);
+
+    //Create the queue of requests
+    RequestsQueue queue(tree,readClasses);
 
     //Start menu
     while(true) {
@@ -31,7 +30,7 @@ int main() {
             menu.getOption();
             if(menu.getExit()) continue;
 
-            //For the option of Filter by UCs/Classes
+            //Option of Filter by UCs/Classes
             if(menu.getLastInput() == "1") {
                 //Show the UCs
                 menu.setOrder();
@@ -48,6 +47,7 @@ int main() {
                 menu.getClassStudents(tree, tree.head, class_);
                 if(menu.getExit()) continue;
 
+            // Option of filter by student year
             } else if(menu.getLastInput() == "2"){
                 //Show possible years
                 menu.getYearOption();
@@ -58,6 +58,7 @@ int main() {
                 menu.getStudentsByYear(tree,tree.head);
                 if(menu.getExit()) continue;
 
+            // Option of filter by a minimum quantity of UCs
             } else if(menu.getLastInput() == "3") {
                 //To get the input of from how many UCs the student must have
                 menu.getInputOfCountOfUcs();
@@ -68,16 +69,60 @@ int main() {
                 menu.getStudentsByCountOfUcs(tree,tree.head);
                 if(menu.getExit()) continue;
 
+            //To see details about a specific student
+            } else if(menu.getLastInput() == "4") {
 
-            } else { continue; }
+                menu.getStudentCode();
+                if(menu.getExit()) continue;
+
+                menu.showStudentDetails(tree, tree.head);
+                if(menu.getExit()) continue;
+            }
+            else { continue; }
 
             //Show the student details
             menu.showStudentDetails(tree, tree.head);
             continue;
 
+        //To change any UC/Classes of a student
         }else if(menu.getLastInput() == "2") {
-            //menu.getAllStudents();
-            break;
+
+            //Get the code of student they want to change
+            menu.getStudentCode();
+            if(menu.getExit()) continue;
+
+            //Show student details and show options to add or remove UC/Class
+            Student student = menu.showStudentDetailsToChange(tree, tree.head);
+            if(menu.getExit()) continue;
+
+            //Add/Remove UC/Class
+            menu.makeChanges(readClasses, student, queue, tree, tree.head);
+            if(menu.getExit()) continue;
+        } else if(menu.getLastInput() == "3") {
+
+            //To get the number of new requests
+            int newRequests = queue.getSize();
+
+            //To save in csv file all requests of the queue
+            queue.upload();
+
+            cout << "All your changes were saved" << endl;
+            cout << "Number of new requests: " << newRequests << endl;
+
+        } else if(menu.getLastInput() == "4") {
+            //To read the csv of saved requests
+            queue.download();
+
+            if(queue.getSize() == 0) {
+                cout << "No requests to apply!" << endl;
+            }
+
+            //To execute all requests in the queue
+            while(queue.getSize() > 0) {
+                queue.pop();
+            }
+        } else {
+            cout << "Invalid input!" << endl;
         }
     }
     cout << "\n\n\n\n\n\n\n\n\n\n\n";
