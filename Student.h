@@ -25,8 +25,8 @@ public:
     Student(string studentCode, string studentName,  Class *studentClass);
     void print();
 
-    void pushClass(Class *studentClass);
-    void removeClass(Class *studentClass); //To remove a student from a Uc/class
+    bool pushClass(Class *studentClass);
+    bool removeClass(Class *studentClass); //To remove a student from a Uc/class
     void changeToClass(Class *studentClass);
     bool isInClass(Class *studentClass);
 

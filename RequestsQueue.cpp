@@ -23,22 +23,16 @@ void RequestsQueue::pop(){
 
         requestsQueue.pop();
 
-        //To print what request is being executed
-        if(request.getAction() == "A") {
-            cout << "\nThe class " << request.getUcCode() << "-" << request.getClassCode() << " was added to the student " << request.getStudentCode() << endl;
-        } else if (request.getAction() == "R") {
-            cout << "\nThe class " << request.getUcCode() << "-" << request.getClassCode() << " was removed from the student " << request.getStudentCode() << endl;
-        }
-
         StudentsTree::node *temp = tree.findByCode(tree.head, request.getStudentCode());
         Class *c = readClasses.findClass(request.getUcCode(),request.getClassCode());
 
         if(request.getAction() == "A"){
-           temp->student.pushClass(c);
+           if(temp->student.pushClass(c))
+               cout << "\nThe class " << request.getUcCode() << "-" << request.getClassCode() << " was added to the student " << request.getStudentCode() << endl;
 
         }else if(request.getAction() == "R"){
-            temp->student.removeClass(c);
-
+            if( temp->student.removeClass(c) )
+                cout << "\nThe class " << request.getUcCode() << "-" << request.getClassCode() << " was removed from the student " << request.getStudentCode() << endl;
         }
 
     } else {

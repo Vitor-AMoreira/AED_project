@@ -34,7 +34,7 @@ class Class {
         void decStudentsNumber();
         int getStudentsNumber() const;
 
-        bool isClassBalanced(vector<Class> classes);
+        bool hourShock(Class *c);
         bool areBalanced(Class *c);
 };
 

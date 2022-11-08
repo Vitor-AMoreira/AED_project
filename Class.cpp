@@ -69,13 +69,12 @@ void Class::decStudentsNumber(){
     this->studentsNumber = this->studentsNumber - 1;
 };
 
-bool Class::isClassBalanced(vector<Class> classes) {
-    for(Class i: classes) {
-        if(i.getStudentsNumber() >= this->getStudentsNumber() + 4 || i.getStudentsNumber() <= this->getStudentsNumber() - 4) {
-            return false;
-        }
-    }
-    return true;
+bool Class::hourShock(Class *c) {
+    if(this->getWeekday() != c->getWeekday()) return false;
+    if(this->getType() != "TP" || c->getType() != "TP") return false;
+    if(this->getStartHour() <= c->getStartHour() && (this->getStartHour() + this->getDuration()) > c->getStartHour()) return true;
+    if(this->getStartHour() < (c->getStartHour() + c->getDuration()) && (this->getStartHour() + this->getDuration()) >=  (c->getStartHour() + c->getDuration())) return true;
+    return false;
 }
 
 bool Class::areBalanced(Class *c){

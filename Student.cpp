@@ -17,12 +17,12 @@ void Student::print(){
     cout << studentCode << "," << studentName;
 }
 
-void Student::pushClass(Class *studentClass) {
+bool Student::pushClass(Class *studentClass) {
     studentClass->decStudentsNumber();
     //Check if the max capacity of the class was reached
     if(studentClass->getStudentsNumber() > 25){
         cout << "The student cannot be added to this class\n\n\t\tCLASS IS FULL" << endl;
-        return;
+        return false;
     }
 
     for(auto it = classes.begin(); it != classes.end(); it++){
@@ -30,31 +30,30 @@ void Student::pushClass(Class *studentClass) {
         //Check if the student already is in the class
         if((*it) == studentClass) {
             cout << "The student is already in this class" << endl;
-            return ;
+            return false;
         }
 
         //Check if the schedule of the student can accept this new class
-        if( (*it)->getWeekday() == studentClass->getWeekday() &&
-            (*it)->getStartHour() == studentClass->getStartHour() &&
-            (*it)->getType() == "TP" && studentClass->getType() == "TP"
-            )
+        if( (*it)->hourShock(studentClass) )
         {
             cout << "The student cannot be added to this class \n HAS A CLASS AT THE SAME TIME" << endl;
-            return;
+            return false;
         }
     }
     classes.push_back(studentClass);
     studentClass->addStudentsNumber();
+    return true;
 }
-void Student::removeClass(Class *studentClass) {
+bool Student::removeClass(Class *studentClass) {
     for(auto it = classes.begin(); it != classes.end(); it++){
        if((*it) == studentClass){
            studentClass->decStudentsNumber();
            classes.erase(it);
-           return;
+           return true;
        }
     }
     cout << "!!! THE STUDENT DOES NOT BELONG TO THIS CLASS !!!" << endl;
+    return false;
 }
 
 void Student::changeToClass(Class *studentClass) {
